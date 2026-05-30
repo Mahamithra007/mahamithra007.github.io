@@ -1,12 +1,3 @@
-<style>
-  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px; color: #333; line-height: 1.6; }
-  h1 { color: #0056b3; border-bottom: 2px solid #eaecef; padding-bottom: 8px; }
-  h2 { color: #24292e; border-bottom: 1px solid #eaecef; padding-bottom: 5px; margin-top: 30px; }
-  h3 { color: #586069; }
-  code { background-color: #f6f8fa; padding: 2px 5px; border-radius: 3px; }
-</style>
-
-
 # MAHAMITHRA SR
 
 ### Global Operations & PMO Specialist | Lean Six Sigma Black Belt
