@@ -6,174 +6,285 @@
     <title>Mahamithra SR | Portfolio</title>
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --text-main: #c9d1d9;
-            --text-muted: #8b949e;
-            --accent: #58a6ff;
-            --border-color: #30363d;
+            --bg-color: #0b0f19;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent: #60a5fa;
+            --accent-hover: #3b82f6;
+            --border-color: #1f2937;
+            --card-hover: #111827;
         }
+        
+        * {
+            box-sizing: border-box;
+            transition: all 0.25s ease;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            max-width: 850px;
+            max-width: 760px;
             margin: 0 auto;
-            padding: 40px 20px;
-            line-height: 1.6;
+            padding: 80px 24px;
+            line-height: 1.75;
+            letter-spacing: -0.01em;
         }
+
+        /* Header Layout Styling */
+        header {
+            margin-bottom: 60px;
+        }
+
         h1 {
             color: #ffffff;
-            font-size: 2.5em;
-            margin-bottom: 5px;
+            font-size: 2.75em;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin: 0 0 8px 0;
         }
-        h2 {
-            color: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-            margin-top: 40px;
-            font-size: 1.6em;
-        }
-        h3 {
-            color: var(--accent);
-            margin-top: 25px;
-            margin-bottom: 5px;
-            font-size: 1.3em;
-        }
+
         .subtitle {
             color: var(--accent);
             font-size: 1.2em;
-            margin-top: 0;
-            font-weight: 400;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
         }
+
         .meta-info {
             color: var(--text-muted);
-            font-size: 0.95em;
-            margin-bottom: 30px;
+            font-size: 0.9em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
         }
+
         .meta-info a {
-            color: var(--accent);
+            color: var(--text-main);
             text-decoration: none;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2px;
         }
+
         .meta-info a:hover {
-            text-decoration: underline;
+            color: var(--accent);
+            border-color: var(--accent);
         }
+
+        /* Section Global Styling */
+        h2 {
+            color: #ffffff;
+            font-size: 1.5em;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-top: 60px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.05em;
+        }
+
+        /* Tech Skill Tags */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .tag:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background-color: var(--card-hover);
+        }
+
+        /* Premium Case Study Block Styling */
+        .challenge-block {
+            border-left: 2px solid var(--border-color);
+            padding: 4px 0 4px 24px;
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+
+        .challenge-block:hover {
+            border-left-color: var(--accent);
+        }
+
+        h3 {
+            color: #ffffff;
+            margin: 0 0 12px 0;
+            font-size: 1.25em;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
         ul {
-            padding-left: 20px;
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
         }
+
         li {
-            margin-bottom: 8px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-size: 1.02em;
+            position: relative;
+            padding-left: 18px;
         }
-        strong {
+
+        li::before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        li strong {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* Simple Lists for Certs/Education */
+        .simple-list li {
+            padding-left: 0;
+            margin-bottom: 12px;
+        }
+        
+        .simple-list li::before {
+            display: none;
+        }
+
+        .simple-list li strong {
             color: #ffffff;
         }
-        .challenge-block {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 15px 20px;
-            margin-top: 15px;
-        }
-        .tag {
-            background-color: #21262d;
-            border: 1px solid var(--border-color);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            display: inline-block;
-            margin: 4px;
-            color: var(--text-main);
+
+        /* Footer links */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
         }
     </style>
 </head>
 <body>
 
-    <h1>MAHAMITHRA SR</h1>
-    <div class="subtitle">Global Operations & PMO Specialist | Lean Six Sigma Black Belt</div>
-    <div class="meta-info">
-        📍 Bangalore, India | 📱 +91-8197422754 | ✉️ <a href="mailto:mahamithra007@gmail.com">mahamithra007@gmail.com</a> | 🔗 <a href="https://linkedin.com/in/mahamithra" target="_blank">LinkedIn Profile</a>
-    </div>
+    <header>
+        <h1>MAHAMITHRA SR</h1>
+        <div class="subtitle">Global Operations & PMO Specialist | Lean Six Sigma Black Belt</div>
+        <div class="meta-info">
+            <span>📍 Bangalore, India</span>
+            <span>•</span>
+            <span>📱 +91-8197422754</span>
+            <span>•</span>
+            <a href="mailto:mahamithra007@gmail.com">mahamithra007@gmail.com</a>
+            <span>•</span>
+            <a href="https://linkedin.com/in/mahamithra" target="_blank">LinkedIn Profile</a>
+        </div>
+    </header>
 
-    <h2>🚀 Executive Summary</h2>
-    <p>Operations Leader with 8+ years of experience specializing in digital transformation, financial governance, and international program management. Proven track record in automating enterprise-scale financial tools using Google Apps Script, scaling digital systems across 7 countries, and ensuring global compliance within high-stakes environments. Expert in bridging the gap between technical systems and business needs to drive measurable operational efficiency.</p>
+    <main>
+        <h2>🚀 Executive Summary</h2>
+        <p>Operations Leader with 8+ years of experience specializing in digital transformation, financial governance, and international program management. Proven track record in automating enterprise-scale financial tools using Google Apps Script, scaling digital systems across 7 countries, and ensuring global compliance within high-stakes environments. Expert in bridging the gap between technical systems and business needs to drive measurable operational efficiency.</p>
 
-    <h2>🛠️ Core Competencies & Toolkit</h2>
-    <div>
-        <span class="tag">PMO Governance</span>
-        <span class="tag">Portfolio Execution</span>
-        <span class="tag">Lean Six Sigma Black Belt</span>
-        <span class="tag">Change Management</span>
-        <span class="tag">Technical Tooling Transformation</span>
-        <span class="tag">Financial Margin Analysis</span>
-        <span class="tag">Global Rollouts</span>
-        <span class="tag">Stakeholder Management</span>
-        <span class="tag">Google Apps Script</span>
-        <span class="tag">Salesforce (Reporting)</span>
-        <span class="tag">Tableau</span>
-        <span class="tag">Monday.com</span>
-        <span class="tag">Jira</span>
-        <span class="tag">Confluence</span>
-        <span class="tag">Smartsheet</span>
-    </div>
+        <h2>🛠️ Core Competencies & Toolkit</h2>
+        <div class="tags-container">
+            <span class="tag">PMO Governance</span>
+            <span class="tag">Portfolio Execution</span>
+            <span class="tag">Lean Six Sigma Black Belt</span>
+            <span class="tag">Change Management</span>
+            <span class="tag">Technical Tooling Transformation</span>
+            <span class="tag">Financial Margin Analysis</span>
+            <span class="tag">Global Rollouts</span>
+            <span class="tag">Stakeholder Management</span>
+            <span class="tag">Google Apps Script</span>
+            <span class="tag">Salesforce (Reporting)</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">Monday.com</span>
+            <span class="tag">Jira</span>
+            <span class="tag">Confluence</span>
+            <span class="tag">Smartsheet</span>
+        </div>
 
-    <h2>📈 Impact & Key Initiatives</h2>
+        <h2>📈 Impact & Key Initiatives</h2>
 
-    <div class="challenge-block">
-        <h3>1. Enterprise Financial Automation & Governance (RingCentral)</h3>
-        <ul>
-            <li><strong>The Challenge:</strong> Streamlining high-stakes financial accuracy and cross-functional margin management across complex global project teams.</li>
-            <li><strong>Action:</strong> Managed the Global Margin Calculator and spearheaded the automation of the Level of Effort (LOE) Allocation Calculator (LAC) using Google Apps Script. Enforced global time-tracking compliance architectures and facilitated third-party vendor renewals, including quote negotiation and Purchase Order (PO) generation.</li>
-            <li><strong>Result:</strong> Secured strict margin integrity and optimized the accurate capture of billable hours necessary for enterprise revenue reporting.</li>
+        <div class="challenge-block">
+            <h3>1. Enterprise Financial Automation & Governance (RingCentral)</h3>
+            <ul>
+                <li><strong>The Challenge:</strong> Streamlining high-stakes financial accuracy and cross-functional margin management across complex global project teams.</li>
+                <li><strong>Action:</strong> Managed the Global Margin Calculator and spearheaded the automation of the Level of Effort (LOE) Allocation Calculator (LAC) using Google Apps Script. Enforced global time-tracking compliance architectures and facilitated third-party vendor renewals, including quote negotiation and Purchase Order (PO) generation.</li>
+                <li><strong>Result:</strong> Secured strict margin integrity and optimized the accurate capture of billable hours necessary for enterprise revenue reporting.</li>
+            </ul>
+        </div>
+
+        <div class="challenge-block">
+            <h3>2. Technical Tooling & Workspace Migration (RingCentral)</h3>
+            <ul>
+                <li><strong>The Challenge:</strong> Transitioning cross-functional project tracking away from legacy systems into a unified, high-efficiency environment.</li>
+                <li><strong>Action:</strong> Directed the end-to-end technical migration from Smartsheet to Monday.com, architecting unified workspace structures and automation rules. Executed rigorous User Acceptance Testing (UAT) and smoke testing for Salesforce updates.</li>
+                <li><strong>Result:</strong> Optimized delivery workflows and ensured absolute system stability across commercial and financial operations.</li>
+            </ul>
+        </div>
+
+        <div class="challenge-block">
+            <h3>3. Global Digital Transformation & Scaling (DKMS Foundation)</h3>
+            <ul>
+                <li><strong>The Challenge:</strong> Transitioning critical international operations from highly manual, fragmented workflows into a unified digital landscape.</li>
+                <li><strong>Action:</strong> Headed a global e-registration initiative across 7 countries, transitioning donor onboarding to a centralized digital platform. Authored foundational Standard Operating Procedures (SOPs) and implemented strict GDPR-compliant protocols for sensitive data management.</li>
+                <li><strong>Result:</strong> Successfully modernized international operations and established a robust data framework utilized across global entities.</li>
+            </ul>
+        </div>
+
+        <div class="challenge-block">
+            <h3>4. Process Optimization & Logistics Scalability (DKMS Foundation)</h3>
+            <ul>
+                <li><strong>The Challenge:</strong> Post-merger compliance gaps and high operational costs during the foundation's startup phase.</li>
+                <li><strong>Action:</strong> Standardized compliance workflows between India and Germany HQs, utilized Tableau data visualization to optimize recruitment strategies, and re-engineered inventory management tracking systems.</li>
+                <li><strong>Result:</strong> Reduced process costs by 40%, drastically improved audit readiness, and maintained zero service disruptions through a high-stakes merger.</li>
+            </ul>
+        </div>
+
+        <h2>📜 Certifications</h2>
+        <ul class="simple-list">
+            <li>Lean Six Sigma Black Belt</li>
+            <li>Google Project Management Professional</li>
+            <li>ESG & Climate Change</li>
         </ul>
-    </div>
 
-    <div class="challenge-block">
-        <h3>2. Technical Tooling & Workspace Migration (RingCentral)</h3>
-        <ul>
-            <li><strong>The Challenge:</strong> Transitioning cross-functional project tracking away from legacy systems into a unified, high-efficiency environment.</li>
-            <li><strong>Action:</strong> Directed the end-to-end technical migration from Smartsheet to Monday.com, architecting unified workspace structures and automation rules. Executed rigorous User Acceptance Testing (UAT) and smoke testing for Salesforce updates.</li>
-            <li><strong>Result:</strong> Optimized delivery workflows and ensured absolute system stability across commercial and financial operations.</li>
+        <h2>🎓 Education & Background</h2>
+        <ul class="simple-list">
+            <li><strong>Masters in Social Work (Medical & Psychiatry)</strong> | St Joseph's University (2014-2016)</li>
+            <li><strong>Bachelor's Degree in Historical Studies</strong> | Madras University (2011-2014)</li>
+            <li><strong>UN Peace Messenger</strong> | Germany Workshops (St Josefhaus & UN Program)</li>
         </ul>
-    </div>
+    </main>
 
-    <div class="challenge-block">
-        <h3>3. Global Digital Transformation & Scaling (DKMS Foundation)</h3>
-        <ul>
-            <li><strong>The Challenge:</strong> Transitioning critical international operations from highly manual, fragmented workflows into a unified digital landscape.</li>
-            <li><strong>Action:</strong> Headed a global e-registration initiative across 7 countries, transitioning donor onboarding to a centralized digital platform. Authored foundational Standard Operating Procedures (SOPs) and implemented strict GDPR-compliant protocols for sensitive data management.</li>
-            <li><strong>Result:</strong> Successfully modernized international operations and established a robust data framework utilized across global entities.</li>
-        </ul>
-    </div>
-
-    <div class="challenge-block">
-        <h3>4. Process Optimization & Logistics Scalability (DKMS Foundation)</h3>
-        <ul>
-            <li><strong>The Challenge:</strong> Post-merger compliance gaps and high operational costs during the foundation's startup phase.</li>
-            <li><strong>Action:</strong> Standardized compliance workflows between India and Germany HQs, utilized Tableau data visualization to optimize recruitment strategies, and re-engineered inventory management tracking systems.</li>
-            <li><strong>Result:</strong> Reduced process costs by 40%, drastically improved audit readiness, and maintained zero service disruptions through a high-stakes merger.</li>
-        </ul>
-    </div>
-
-    <h2>📜 Certifications</h2>
-    <ul>
-        <li>Lean Six Sigma Black Belt</li>
-        <li>Google Project Management Professional</li>
-        <li>ESG & Climate Change</li>
-    </ul>
-
-    <h2>🎓 Education & Background</h2>
-    <ul>
-        <li><strong>Masters in Social Work (Medical & Psychiatry)</strong> | St Joseph's University (2014-2016)</li>
-        <li><strong>Bachelor's Degree in Historical Studies</strong> | Madras University (2011-2014)</li>
-        <li><strong>UN Peace Messenger</strong> | Germany Workshops (St Josefhaus & UN Program)</li>
-    </ul>
-
-    <h2>📬 Let's Connect</h2>
-    <p>I am always open to discussing global program execution, continuous improvement frameworks, workflow automation, or strategic PMO governance.</p>
-    <ul>
-        <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mahamithra" target="_blank">linkedin.com/in/mahamithra</a></li>
-        <li><strong>Email:</strong> <a href="mailto:mahamithra007@gmail.com">mahamithra007@gmail.com</a></li>
-    </ul>
+    <footer>
+        <h2>📬 Let's Connect</h2>
+        <p>I am always open to discussing global program execution, continuous improvement frameworks, workflow automation, or strategic PMO governance.</p>
+        <div class="meta-info">
+            <a href="https://linkedin.com/in/mahamithra" target="_blank">LinkedIn</a>
+            <span>•</span>
+            <a href="mailto:mahamithra007@gmail.com">Email</a>
+        </div>
+    </footer>
 
 </body>
 </html>
