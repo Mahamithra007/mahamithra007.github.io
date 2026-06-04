@@ -60,13 +60,17 @@
             align-items: flex-start;
         }
 
+        /* SMART IMAGE CROP: Auto-focuses on your head and shoulders */
         .profile-pic {
-            width: 88px;
-            height: 88px;
-            border-radius: 16px;
+            width: 110px;
+            height: 110px;
+            border-radius: 20px;
             object-fit: cover;
+            object-position: center 22%; /* Vertically shifts the crop to center your face */
+            transform: scale(1.15); /* Zooms in slightly to cut out excess background */
             border: 1px solid var(--border-color);
-            margin-bottom: 24px;
+            margin-bottom: 30px;
+            margin-left: 8px;
             background: var(--sidebar-bg);
         }
 
@@ -300,6 +304,7 @@
             aside { position: relative; width: 100%; height: auto; padding: 40px 24px; border-right: none; border-bottom: 1px solid var(--border-color); }
             main { padding: 40px 24px; }
             .btn { width: auto; display: inline-flex; padding: 10px 30px; }
+            .profile-pic { margin-left: 0; }
         }
     </style>
 </head>
