@@ -77,17 +77,23 @@
             align-items: flex-start;
         }
 
+        /* FAANG Fix: Image Aspect-Ratio Scaling Glitch Resolved */
         .profile-pic {
             width: 110px;
             height: 110px;
             border-radius: 20px;
             object-fit: cover;
             object-position: center 22%; 
-            transform: scale(1.15); 
             border: 1px solid var(--border-color);
             margin-bottom: 20px;
-            margin-left: 8px;
             background: var(--sidebar-bg);
+            overflow: hidden; 
+        }
+
+        /* Trigger scale state cleanly on profile block hover */
+        .profile-section:hover .profile-pic {
+            transform: scale(1.05);
+            border-color: var(--accent);
         }
 
         h1 {
@@ -199,8 +205,8 @@
             margin-top: 0;
         }
 
-        /* Philosophy Callout */
-        .philosophy-block {
+        /* FAANG Fix: Semantic Blockquote over unsemantic div */
+        blockquote.philosophy-block {
             margin: 24px 0; 
             padding: 24px; 
             border-left: 1px solid var(--accent); 
@@ -239,69 +245,22 @@
             background-color: var(--bg-color);
         }
 
-        /* ==========================================================================
-           CONTINUOUS TIMELINE AXIS ENGINE
-           ========================================================================== */
-        .timeline-axis {
-            position: relative;
-            padding-left: 32px;
-            margin: 24px 0;
-        }
-
-        /* Vertical Spine Axis Line */
-        .timeline-axis::before {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 10px;
-            bottom: 10px;
-            width: 2px;
-            background-color: var(--border-color);
-        }
-
-        .timeline-node {
-            position: relative;
-            margin-bottom: 32px;
-        }
-
-        .timeline-node:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Node Points */
-        .timeline-node::before {
-            content: '';
-            position: absolute;
-            left: -32px;
-            top: 8px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--bg-color);
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 6px var(--accent);
-            z-index: 2;
-        }
-
-        .timeline-node:hover::before {
-            background-color: var(--accent);
-            transform: scale(1.2);
-        }
-
-        .timeline-card {
+        /* Sleek Modular Challenge Cards Layout */
+        .challenge-block {
             border: 1px solid var(--border-color);
             background-color: var(--sidebar-bg);
             border-radius: 12px;
             padding: 24px;
+            margin: 16px 0;
         }
 
-        .timeline-card:hover {
+        .challenge-block:hover {
             border-color: #374151;
             background-color: var(--card-hover);
             transform: translateY(-2px);
         }
 
-        .timeline-card h3 {
+        .challenge-block h3 {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 1.25em;
             margin-top: 0;
@@ -309,7 +268,7 @@
             color: #ffffff;
         }
 
-        .timeline-meta {
+        .challenge-meta {
             font-family: monospace;
             font-size: 0.8em;
             color: var(--accent);
@@ -317,7 +276,7 @@
             display: block;
         }
 
-        /* Subtle Clean Technical Note styling */
+        /* Architecture Resource Governance Subsection */
         .engineering-trade-offs {
             margin-top: 16px;
             padding-top: 12px;
@@ -393,7 +352,7 @@
             color: var(--bg-color);
         }
 
-        /* Contact Details Grid Layout */
+        /* Contact Details Footer Layout */
         .sidebar-footer {
             display: flex;
             flex-direction: column;
@@ -426,7 +385,7 @@
             color: var(--accent);
         }
 
-        /* Responsive Mobile / Tablet View Engine Spacing Fixes */
+        /* Mobile / Tablet Responsive Adjustments */
         @media (max-width: 850px) {
             body { padding: 0; }
             .portfolio-wrapper { display: block; }
@@ -435,25 +394,18 @@
             .btn { width: auto; display: inline-flex; padding: 10px 30px; }
             .profile-pic { margin-left: 0; }
             .sidebar-footer { margin-top: 16px; gap: 12px; }
-            .timeline-card { padding: 16px; }
-            
-            /* Removes the timeline line and floating nodes on mobile to stay exceptionally clean */
-            .timeline-axis { padding-left: 0; }
-            .timeline-axis::before { display: none; }
-            .timeline-node::before { display: none; }
-            .timeline-node { margin-bottom: 16px; }
+            .challenge-block { padding: 16px; }
         }
 
-        /* FAANG Print-To-PDF dossier layout safe guards */
+        /* FAANG Fix: Complete Print-To-PDF dossier layout safe guards */
         @media print {
-            aside { position: relative; width: 100%; height: auto; padding: 20px; border: none; }
-            main { grid-column-start: 1; padding: 20px; width: 100%; }
-            .portfolio-wrapper { display: block; }
-            .timeline-axis::before { display: none; }
-            .timeline-node::before { display: none; }
-            .timeline-axis { padding-left: 0; }
-            .timeline-card { border: 1px solid #000000; background: none; color: #000000; }
-            body { background: #ffffff; color: #000000; }
+            * { background: transparent !important; color: #000000 !important; box-shadow: none !important; }
+            body { display: block !important; background: #ffffff !important; color: #000000 !important; }
+            .portfolio-wrapper { display: block !important; }
+            aside { position: relative !important; width: 100% !important; height: auto !important; padding: 20px 0 !important; border: none !important; }
+            main { padding: 20px 0 !important; width: 100% !important; }
+            .btn, .status-badge, .cert-link { display: none !important; } 
+            .challenge-block { border: 1px solid #e5e7eb !important; page-break-inside: avoid; }
         }
     </style>
 </head>
@@ -501,9 +453,9 @@
             <h2>Executive Summary</h2>
             <p>Project Management and Operations professional with 8+ years of experience supporting end-to-end enterprise-scale implementation and transformation programs. Proven track record of enabling effective Agile delivery, maintaining rigorous PMO governance, and navigating strict global compliance regulations. Uniquely combines data-driven financial tracking and continuous improvement methodologies with extensive experience coordinating cross-functional, distributed onshore and offshore teams.</p>
 
-            <div class="philosophy-block">
-                <p>"My approach to program management centers on absolute financial margin integrity, the systematic elimination of operational friction through custom workflow engineering, and building highly resilient compliance frameworks that scale predictably across borders."</p>
-            </div>
+            <blockquote class="philosophy-block">
+                <p>My approach to program management centers on absolute financial margin integrity, the systematic elimination of operational friction through custom workflow engineering, and building highly resilient compliance frameworks that scale predictably across borders.</p>
+            </blockquote>
 
             <h2>Core Competencies</h2>
             
@@ -548,85 +500,82 @@
 
             <h2>Impact & Key Initiatives</h2>
 
-            <div class="timeline-axis">
+            <div class="challenge-block">
+                <h3>Project Manager, Operations Excellence</h3>
+                <span class="challenge-meta">RingCentral // Apr 2024 - Present</span>
+                
+                <p style="color: var(--text-main); font-weight: 500; margin-top: 0; margin-bottom: 12px; font-size: 0.95em;">
+                    → Engineered custom script automation structures that reduced cycle times for complex business workflows by 95%, safeguarding enterprise margin accuracy.
+                </p>
 
-                <div class="timeline-node">
-                    <div class="timeline-card">
-                        <h3>Project Manager, Operations Excellence</h3>
-                        <span class="timeline-meta">RingCentral // Apr 2024 - Present</span>
-                        <ul>
-                            <li>Reduced cycle time for deal-desk approvals by 95% (from 48 hours to 2 hours) by engineering a robust, smoothly running automated Margin Calculator using Google Apps Script to assist in financial tracking, forecasting, and reporting.</li>
-                            <li>Architected unified workspace structures and governance frameworks across enterprise tools (Smartsheet, Monday.com, Jira) to optimize tracking and coordination for cross-functional, distributed onshore/offshore teams.</li>
-                            <li>Led the transition and adoption of the LAC 3.0 project governance tool, maintaining comprehensive RAID logs and applying Lean Six Sigma root cause analysis to eliminate formula errors.</li>
-                            <li>Directed User Acceptance Testing (UAT) and smoke testing for enterprise releases, ensuring adherence to delivery processes, standards, and seamless system stability.</li>
-                        </ul>
-                        <div class="engineering-trade-offs">
-                            <strong>// Operational Governance Note:</strong> Engineered internal script automations natively over sourcing out-of-the-box vendor software, completely bypassing multi-user licensing overhead and integrating directly with pre-existing legacy sheets.
-                        </div>
-                    </div>
+                <ul>
+                    <li><strong>Custom Tooling Automation:</strong> Reduced cycle time for deal-desk approvals from 48 hours to 2 hours by programming a robust Margin Calculator inside Google Apps Script to securely parse and forecast financial data.</li>
+                    <li><strong>Systems Architecture:</strong> Architected unified workspace structures and governance frameworks across enterprise tools (Smartsheet, Monday.com, Jira) to optimize tracking and coordination for global cross-functional teams.</li>
+                    <li><strong>Governance Protocol:</strong> Led the transition and adoption of the LAC 3.0 project governance tool, maintaining comprehensive RAID logs and applying Lean Six Sigma root cause analysis to eliminate critical formula errors.</li>
+                    <li><strong>Release Stability:</strong> Directed User Acceptance Testing (UAT) and smoke testing for enterprise releases, ensuring strict adherence to delivery processes and zero-defect system stability.</li>
+                </ul>
+                <div class="engineering-trade-offs">
+                    <strong>// Operational Governance Note:</strong> Chose to engineer internal script automations natively over sourcing out-of-the-box vendor software, entirely bypassing heavy multi-user licensing overhead and integrating directly with pre-existing legacy architecture.
                 </div>
+            </div>
 
-                <div class="timeline-node">
-                    <div class="timeline-card">
-                        <h3>Global Program Lead (Operations & Compliance)</h3>
-                        <span class="timeline-meta">DKMS Foundation // Apr 2020 - Dec 2023</span>
-                        <ul>
-                            <li>Managed end-to-end project delivery (initiate-plan-execute-close) for a global e-registration initiative across 7 countries, successfully transitioning donor onboarding to a unified digital platform.</li>
-                            <li>Partnered with legal counsel to navigate stringent FCRA restrictions and execute a corporate restructuring (for-profit/non-profit entities) to secure global funding channels.</li>
-                            <li>Implemented GDPR-compliant data governance and Standard Operating Procedures (SOPs) for the secure management of sensitive DNA and medical data.</li>
-                            <li>Optimized material flow and kit-distribution logistics across India by designing decentralized volunteer networks and "Student Ambassador" hub-and-spoke models.</li>
-                            <li>Utilized Tableau to analyze laboratory data regarding buccal swab accuracy, tracking performance and translating insights into continuous improvement initiatives.</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="challenge-block">
+                <h3>Global Program Lead (Operations & Compliance)</h3>
+                <span class="challenge-meta">DKMS Foundation // Apr 2020 - Dec 2023</span>
 
-                <div class="timeline-node">
-                    <div class="timeline-card">
-                        <h3>Associate (Process & Integration)</h3>
-                        <span class="timeline-meta">DKMS Foundation // Nov 2018 - Mar 2020</span>
-                        <ul>
-                            <li>Led post-merger operational integration between India and Germany, standardizing global manufacturing-style compliance workflows to improve audit readiness.</li>
-                            <li>Reduced systemic process tracking costs by 40% while increasing overall material traceability by overhauling core inventory management systems and implementing strict tracking protocols.</li>
-                        </ul>
-                    </div>
-                </div>
+                <p style="color: var(--text-main); font-weight: 500; margin-top: 0; margin-bottom: 12px; font-size: 0.95em;">
+                    → Orchestrated global digital transformation and legal operational restructuring across 7 countries, scaling digital accessibility and compliance.
+                </p>
 
-                <div class="timeline-node">
-                    <div class="timeline-card">
-                        <h3>UN Peace Messenger & Program Specialist</h3>
-                        <span class="timeline-meta">Germany // Aug 2017 - Aug 2018</span>
-                        <ul>
-                            <li>Facilitated inclusive social initiatives and educational programs in Germany; served as a UN Peace Messenger advocating for global cooperation and sustainability in international workshops.</li>
-                        </ul>
-                    </div>
-                </div>
+                <ul>
+                    <li><strong>Global Execution:</strong> Managed end-to-end project delivery (initiate-plan-execute-close) for a global e-registration initiative across 7 countries, successfully transitioning manual donor onboarding to a unified digital platform.</li>
+                    <li><strong>Structural Refactoring:</strong> Partnered directly with legal counsel to navigate stringent FCRA restrictions and execute a complex corporate restructuring (for-profit to non-profit entities) to secure global funding channels.</li>
+                    <li><strong>Data Security Frameworks:</strong> Implemented GDPR-compliant data governance and Standard Operating Procedures (SOPs) for the highly secure management of sensitive DNA and medical records.</li>
+                    <li><strong>Supply Chain Scaling:</strong> Optimized material flow and kit-distribution logistics across India by engineering decentralized volunteer networks and scalable "Student Ambassador" hub-and-spoke models.</li>
+                    <li><strong>Data Insights:</strong> Utilized Tableau to analyze large-scale laboratory data regarding buccal swab accuracy, translating insights into immediate continuous improvement initiatives.</li>
+                </ul>
+            </div>
 
-                <div class="timeline-node">
-                    <div class="timeline-card">
-                        <h3>Program Executive (Operations)</h3>
-                        <span class="timeline-meta">SoStakes Services Pvt Ltd // Jan 2017 - Aug 2017</span>
-                        <ul>
-                            <li>Designed operational delivery models and audited timelines for large-scale CSR projects to ensure 100% milestone adherence for corporate sponsors.</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="challenge-block">
+                <h3>Associate (Process & Integration)</h3>
+                <span class="challenge-meta">DKMS Foundation // Nov 2018 - Mar 2020</span>
 
+                <p style="color: var(--text-main); font-weight: 500; margin-top: 0; margin-bottom: 12px; font-size: 0.95em;">
+                    → Directed aggressive post-merger integration operations, effectively reducing systemic process tracking costs by 40%.
+                </p>
+
+                <ul>
+                    <li><strong>Post-Merger Integration:</strong> Led operational alignment between India and Germany, standardizing global manufacturing-style compliance workflows to ensure immediate audit readiness.</li>
+                    <li><strong>Inventory Optimization:</strong> Overhauled core legacy inventory management systems by implementing strict tracking protocols that drove up material traceability while slashing operational overhead.</li>
+                </ul>
+            </div>
+
+            <div class="challenge-block">
+                <h3>UN Peace Messenger & Program Specialist</h3>
+                <span class="challenge-meta">Germany // Aug 2017 - Aug 2018</span>
+                <ul>
+                    <li><strong>Global Strategy:</strong> Facilitated inclusive social initiatives and educational programs in Germany; served as a UN Peace Messenger advocating for global cooperation and sustainability in international workshops.</li>
+                </ul>
+            </div>
+
+            <div class="challenge-block">
+                <h3>Program Executive (Operations)</h3>
+                <span class="challenge-meta">SoStakes Services Pvt Ltd // Jan 2017 - Aug 2017</span>
+                <ul>
+                    <li><strong>Milestone Governance:</strong> Designed operational delivery models and audited timelines for large-scale CSR projects to ensure 100% milestone adherence for corporate sponsors.</li>
+                </ul>
             </div>
 
             <h2>Personal Projects</h2>
 
-            <div class="timeline-axis">
-                <div class="timeline-node">
-                    <div class="timeline-card">
-                        <h3>Shelved | Book-Tracking Application</h3>
-                        <span class="timeline-meta">Personal Deployment // Mobile Platform Architecture</span>
-                        <ul>
-                            <li>Developed a dedicated mobile application for personal library management and book tracking.</li>
-                            <li>Engineered advanced technical capabilities, including a multi-tier ISBN lookup system and dynamic genre grouping logic.</li>
-                            <li>Successfully launched the platform to production, with the core tracking system recently welcoming its first active visitor.</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="challenge-block">
+                <h3>Shelved | Book-Tracking Application</h3>
+                <span class="challenge-meta">Personal Deployment // Mobile Platform Architecture</span>
+                <ul>
+                    <li><strong>Platform Conception:</strong> Developed a dedicated mobile application specifically designed for personal library management and detailed reading metrics.</li>
+                    <li><strong>Technical Capabilities:</strong> Engineered advanced backend features, including a multi-tier ISBN lookup system and dynamic genre grouping logic.</li>
+                    <li><strong>Production Status:</strong> Successfully launched the platform to production environments, with the core tracking system actively receiving and managing initial user traffic.</li>
+                </ul>
             </div>
 
             <h2>Certifications</h2>
