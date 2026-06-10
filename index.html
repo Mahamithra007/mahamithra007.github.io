@@ -276,6 +276,11 @@
             font-size: 0.95em;
         }
 
+        /* FIX: Removes the extra gap under the final 'Result' bullet */
+        li:last-child {
+            margin-bottom: 0;
+        }
+
         li::before {
             content: "→";
             color: var(--accent);
@@ -361,6 +366,11 @@
             .btn { width: auto; display: inline-flex; padding: 10px 30px; }
             .profile-pic { margin-left: 0; }
             .sidebar-footer { margin-top: 30px; gap: 16px; }
+            
+            /* FIX: Shrinks the massive padding inside the challenge cards on mobile */
+            .challenge-block {
+                padding: 16px; 
+            }
         }
     </style>
 </head>
