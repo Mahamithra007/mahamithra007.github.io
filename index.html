@@ -46,7 +46,8 @@
             position: fixed;
             width: 280px;
             height: 100vh;
-            padding: 60px 30px;
+            /* TIGHTENED: Reduced top padding from 60px to 40px */
+            padding: 40px 30px;
             border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
@@ -69,7 +70,8 @@
             object-position: center 22%; 
             transform: scale(1.15); 
             border: 1px solid var(--border-color);
-            margin-bottom: 30px;
+            /* TIGHTENED: Reduced from 30px to 20px */
+            margin-bottom: 20px;
             margin-left: 8px;
             background: var(--sidebar-bg);
         }
@@ -88,7 +90,8 @@
             font-size: 0.95em;
             font-weight: 400;
             line-height: 1.4;
-            margin: 0 0 20px 0;
+            /* TIGHTENED: Reduced from 20px to 12px */
+            margin: 0 0 12px 0;
         }
 
         .status-badge {
@@ -101,7 +104,8 @@
             background: var(--accent-glow);
             padding: 4px 10px;
             border-radius: 12px;
-            margin-bottom: 30px;
+            /* TIGHTENED: Reduced from 30px to 20px */
+            margin-bottom: 20px;
         }
 
         .status-dot {
@@ -144,7 +148,8 @@
         /* Right Content Area */
         main {
             grid-column-start: 2;
-            padding: 60px 60px 100px 60px;
+            /* TIGHTENED: Reduced top padding from 60px to 40px */
+            padding: 40px 60px 100px 60px;
             max-width: 780px;
         }
 
@@ -154,18 +159,26 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            margin-top: 50px;
-            margin-bottom: 24px;
+            /* TIGHTENED: Reduced from 50px to 30px */
+            margin-top: 30px;
+            /* TIGHTENED: Reduced from 24px to 16px */
+            margin-bottom: 16px;
             font-family: monospace;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
+        }
+        
+        /* Removes top margin for the very first h2 so it aligns with sidebar */
+        main h2:first-of-type {
+            margin-top: 0;
         }
 
         h3 {
             color: var(--text-main);
             font-size: 0.95em;
             font-weight: 600;
-            margin-top: 25px;
+            /* TIGHTENED: Reduced from 25px to 20px */
+            margin-top: 20px;
             margin-bottom: 12px;
             font-family: monospace;
             color: #e5e7eb;
@@ -175,12 +188,15 @@
             color: var(--text-muted);
             font-size: 1.1em;
             font-weight: 400;
-            line-height: 1.8;
+            /* TIGHTENED: Slightly reduced line-height for denser reading */
+            line-height: 1.6;
+            margin-top: 0;
         }
 
         /* Philosophy Callout */
         .philosophy-block {
-            margin: 40px 0; 
+            /* TIGHTENED: Reduced from 40px to 24px */
+            margin: 24px 0; 
             padding: 24px; 
             border-left: 1px solid var(--accent); 
             background: var(--sidebar-bg); 
@@ -224,7 +240,8 @@
             background-color: var(--sidebar-bg);
             border-radius: 12px;
             padding: 24px;
-            margin: 20px 0;
+            /* TIGHTENED: Reduced from 20px to 16px */
+            margin: 16px 0;
         }
 
         .challenge-block:hover {
