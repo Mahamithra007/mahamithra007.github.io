@@ -239,27 +239,97 @@
             background-color: var(--bg-color);
         }
 
-        /* Project / Initiative Cards */
-        .challenge-block {
+        /* ==========================================================================
+           CONTINUOUS TIMELINE AXIS ENGINE
+           ========================================================================== */
+        .timeline-axis {
+            position: relative;
+            padding-left: 32px;
+            margin: 24px 0;
+        }
+
+        /* Vertical Spine */
+        .timeline-axis::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background-color: var(--border-color);
+        }
+
+        .timeline-node {
+            position: relative;
+            margin-bottom: 32px;
+        }
+
+        .timeline-node:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Interactive Node Point */
+        .timeline-node::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--bg-color);
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 6px var(--accent);
+            z-index: 2;
+        }
+
+        .timeline-node:hover::before {
+            background-color: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .timeline-card {
             border: 1px solid var(--border-color);
             background-color: var(--sidebar-bg);
             border-radius: 12px;
             padding: 24px;
-            margin: 16px 0;
         }
 
-        .challenge-block:hover {
+        .timeline-card:hover {
             border-color: #374151;
             background-color: var(--card-hover);
             transform: translateY(-2px);
         }
 
-        .challenge-block h3 {
+        .timeline-card h3 {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 1.25em;
             margin-top: 0;
-            margin-bottom: 16px;
+            margin-bottom: 6px;
             color: #ffffff;
+        }
+
+        .timeline-meta {
+            font-family: monospace;
+            font-size: 0.8em;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* FAANG Architecture Architecture Trade-offs Subsection */
+        .engineering-trade-offs {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+            font-size: 0.85em;
+            color: var(--text-muted);
+            font-family: monospace;
+            line-height: 1.5;
+        }
+
+        .engineering-trade-offs strong {
+            color: #e5e7eb;
         }
 
         ul {
@@ -323,7 +393,40 @@
             color: var(--bg-color);
         }
 
-        /* Flawless Mobile / Tablet Adaptations */
+        /* Contact Details Layout */
+        .sidebar-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 0.85em;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            color: var(--text-muted);
+        }
+
+        .contact-item label {
+            font-family: monospace;
+            font-size: 0.80em;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #4b5563;
+            margin-bottom: 2px;
+        }
+
+        .contact-item a, .contact-item span {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive Mobile / Tablet Adaptations */
         @media (max-width: 850px) {
             body { padding: 0; }
             .portfolio-wrapper { display: block; }
@@ -332,7 +435,21 @@
             .btn { width: auto; display: inline-flex; padding: 10px 30px; }
             .profile-pic { margin-left: 0; }
             .sidebar-footer { margin-top: 16px; gap: 12px; }
-            .challenge-block { padding: 16px; }
+            .timeline-card { padding: 16px; }
+        }
+
+        /* ==========================================================================
+           FAANG PRINT-TO-PDF FAIL-SAFE
+           ========================================================================== */
+        @media print {
+            aside { position: relative; width: 100%; height: auto; padding: 20px; border: none; }
+            main { grid-column-start: 1; padding: 20px; width: 100%; }
+            .portfolio-wrapper { display: block; }
+            .timeline-axis::before { display: none; }
+            .timeline-node::before { display: none; }
+            .timeline-axis { padding-left: 0; }
+            .timeline-card { border: 1px solid #000000; background: none; color: #000000; }
+            body { background: #ffffff; color: #000000; }
         }
     </style>
 </head>
@@ -416,51 +533,78 @@
 
             <h2>Impact & Key Initiatives</h2>
 
-            <div class="challenge-block">
-                <h3>Enterprise Financial Automation & Governance (RingCentral)</h3>
-                <ul>
-                    <li><strong>The Challenge:</strong> Streamlining high-stakes financial accuracy and cross-functional margin management across complex global project teams.</li>
-                    <li><strong>Action:</strong> Managed the Global Margin Calculator and spearheaded the automation of the Level of Effort (LOE) Allocation Calculator (LAC) using Google Apps Script. Enforced global time-tracking compliance architectures and managed vendor renewal protocols.</li>
-                    <li><strong>Result:</strong> Secured absolute margin integrity and optimized tracking for core enterprise revenue reporting.</li>
-                </ul>
-            </div>
+            <div class="timeline-axis">
 
-            <div class="challenge-block">
-                <h3>Technical Tooling & Workspace Migration (RingCentral)</h3>
-                <ul>
-                    <li><strong>The Challenge:</strong> Transitioning core cross-functional project tracking away from disjointed legacy sheets into unified environments.</li>
-                    <li><strong>Action:</strong> Directed the full technical migration from Smartsheet to Monday.com, architecting unified rules, and executed systematic smoke tests for Salesforce rollouts.</li>
-                    <li><strong>Result:</strong> Drastically optimized program delivery cycles and maintained complete operational ecosystem stability.</li>
-                </ul>
-            </div>
+                <div class="timeline-node">
+                    <div class="timeline-card">
+                        <h3>Enterprise Financial Automation & Governance</h3>
+                        <span class="timeline-meta">RingCentral // Program Management</span>
+                        <ul>
+                            <li><strong>The Challenge:</strong> Streamlining high-stakes financial accuracy and cross-functional margin management across complex global project teams.</li>
+                            <li><strong>Action:</strong> Managed the Global Margin Calculator and spearheaded the automation of the Level of Effort (LOE) Allocation Calculator (LAC) using Google Apps Script. Enforced global time-tracking compliance architectures and managed vendor renewal protocols.</li>
+                            <li><strong>Result:</strong> Secured absolute margin integrity and optimized tracking for core enterprise revenue reporting.</li>
+                        </ul>
+                        <div class="engineering-trade-offs">
+                            <strong>// Resource Governance Trade-off:</strong> Engineered custom internal script automation rather than sourcing external vendor software—eliminating licensing overhead and ensuring direct compatibility with custom legacy architecture frameworks.
+                        </div>
+                    </div>
+                </div>
 
-            <div class="challenge-block">
-                <h3>Global Digital Transformation & Scaling (DKMS Foundation)</h3>
-                <ul>
-                    <li><strong>The Challenge:</strong> Shifting high-volume operational workflows across complex international frameworks from manual to digital paradigms.</li>
-                    <li><strong>Action:</strong> Led a multi-country e-registration program across 7 nations, standardizing international GDPR data structures and drafting foundational blueprint SOPs.</li>
-                    <li><strong>Result:</strong> Scaled digital accessibility metrics significantly while establishing absolute international regulatory compliance.</li>
-                </ul>
-            </div>
+                <div class="timeline-node">
+                    <div class="timeline-card">
+                        <h3>Technical Tooling & Workspace Migration</h3>
+                        <span class="timeline-meta">RingCentral // Systems Infrastructure</span>
+                        <ul>
+                            <li><strong>The Challenge:</strong> Transitioning core cross-functional project tracking away from disjointed legacy sheets into unified environments.</li>
+                            <li><strong>Action:</strong> Directed the full technical migration from Smartsheet to Monday.com, architecting unified rules, and executed systematic smoke tests for Salesforce rollouts.</li>
+                            <li><strong>Result:</strong> Drastically optimized program delivery cycles and maintained complete operational ecosystem stability.</li>
+                        </ul>
+                        <div class="engineering-trade-offs">
+                            <strong>// Systems Architecture Note:</strong> Designed a unified data mapping rule layout to enforce system standardization, performing parallel execution verification to mitigate single-point-of-failure risks during deep cuts over to the new tracking space.
+                        </div>
+                    </div>
+                </div>
 
-            <div class="challenge-block">
-                <h3>Process Optimization & Post-Merger Integration (DKMS Foundation)</h3>
-                <ul>
-                    <li><strong>The Challenge:</strong> Managing operational compliance alignment and severe supply chain overheads during integration stages.</li>
-                    <li><strong>Action:</strong> Aligned tracking workflows between cross-border headquarters, deployed analytical data systems inside Tableau, and overhauled physical inventory pipelines.</li>
-                    <li><strong>Result:</strong> Successfully reduced systemic operational costs by 40% while establishing pristine audit readiness milestones.</li>
-                </ul>
+                <div class="timeline-node">
+                    <div class="timeline-card">
+                        <h3>Global Digital Transformation & Scaling</h3>
+                        <span class="timeline-meta">DKMS Foundation // International Operations</span>
+                        <ul>
+                            <li><strong>The Challenge:</strong> Shifting high-volume operational workflows across complex international frameworks from manual to digital paradigms.</li>
+                            <li><strong>Action:</strong> Led a multi-country e-registration program across 7 nations, standardizing international GDPR data structures and drafting foundational blueprint SOPs.</li>
+                            <li><strong>Result:</strong> Scaled digital accessibility metrics significantly while establishing absolute international regulatory compliance.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-node">
+                    <div class="timeline-card">
+                        <h3>Process Optimization & Post-Merger Integration</h3>
+                        <span class="timeline-meta">DKMS Foundation // Business Optimization</span>
+                        <ul>
+                            <li><strong>The Challenge:</strong> Managing operational compliance alignment and severe supply chain overheads during integration stages.</li>
+                            <li><strong>Action:</strong> Aligned tracking workflows between cross-border headquarters, deployed analytical data systems inside Tableau, and overhauled physical inventory pipelines.</li>
+                            <li><strong>Result:</strong> Successfully reduced systemic operational costs by 40% while establishing pristine audit readiness milestones.</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
             <h2>Personal Projects</h2>
 
-            <div class="challenge-block">
-                <h3>Shelved | Book-Tracking Application</h3>
-                <ul>
-                    <li><strong>The Concept:</strong> Developed a dedicated mobile application for personal library management and book tracking. </li>
-                    <li><strong>Technical Highlights:</strong> Engineered advanced capabilities, including a multi-tier ISBN lookup system and dynamic genre grouping logic. </li>
-                    <li><strong>Status:</strong> Successfully launched the platform to production, with the application recently welcoming its first active visitor. </li>
-                </ul>
+            <div class="timeline-axis">
+                <div class="timeline-node">
+                    <div class="timeline-card">
+                        <h3>Shelved | Book-Tracking Application</h3>
+                        <span class="timeline-meta">Personal Deployment // Mobile Platform</span>
+                        <ul>
+                            <li><strong>The Concept:</strong> Developed a dedicated mobile application for personal library management and book tracking. </li>
+                            <li><strong>Technical Highlights:</strong> Engineered advanced capabilities, including a multi-tier ISBN lookup system and dynamic genre grouping logic. </li>
+                            <li><strong>Status:</strong> Successfully launched the platform to production, with the application recently welcoming its first active visitor. </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <h2>Certifications</h2>
