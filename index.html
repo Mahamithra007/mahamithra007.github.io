@@ -239,13 +239,16 @@
             background-color: var(--bg-color);
         }
 
-        /* Continuous Vertical Axis Framework */
+        /* ==========================================================================
+           CONTINUOUS TIMELINE AXIS ENGINE
+           ========================================================================== */
         .timeline-axis {
             position: relative;
             padding-left: 32px;
             margin: 24px 0;
         }
 
+        /* Vertical Spine Axis Line */
         .timeline-axis::before {
             content: '';
             position: absolute;
@@ -265,6 +268,7 @@
             margin-bottom: 0;
         }
 
+        /* Node Points */
         .timeline-node::before {
             content: '';
             position: absolute;
@@ -313,7 +317,7 @@
             display: block;
         }
 
-        /* FAANG Constraints & Architecture Layout Callouts */
+        /* Subtle Clean Technical Note styling */
         .engineering-trade-offs {
             margin-top: 16px;
             padding-top: 12px;
@@ -389,7 +393,7 @@
             color: var(--bg-color);
         }
 
-        /* Contact Section Details Layout */
+        /* Contact Details Grid Layout */
         .sidebar-footer {
             display: flex;
             flex-direction: column;
@@ -422,7 +426,7 @@
             color: var(--accent);
         }
 
-        /* Responsive Mobile / Tablet Adaptations */
+        /* Responsive Mobile / Tablet View Engine Spacing Fixes */
         @media (max-width: 850px) {
             body { padding: 0; }
             .portfolio-wrapper { display: block; }
@@ -432,9 +436,15 @@
             .profile-pic { margin-left: 0; }
             .sidebar-footer { margin-top: 16px; gap: 12px; }
             .timeline-card { padding: 16px; }
+            
+            /* Removes the timeline line and floating nodes on mobile to stay exceptionally clean */
+            .timeline-axis { padding-left: 0; }
+            .timeline-axis::before { display: none; }
+            .timeline-node::before { display: none; }
+            .timeline-node { margin-bottom: 16px; }
         }
 
-        /* FAANG Print-To-PDF dossier compilation engine override */
+        /* FAANG Print-To-PDF dossier layout safe guards */
         @media print {
             aside { position: relative; width: 100%; height: auto; padding: 20px; border: none; }
             main { grid-column-start: 1; padding: 20px; width: 100%; }
@@ -453,9 +463,9 @@
         
         <aside>
             <div class="profile-section">
-                <img src="profile.jpg" alt="MAHAMITHRA SR [cite: 1]" class="profile-pic" onerror="this.style.display='none';">
-                <h1>MAHAMITHRA SR [cite: 1]</h1>
-                <div class="subtitle">PMO & Operations Excellence Lead<br>Lean Six Sigma Black Belt [cite: 2]</div>
+                <img src="profile.jpg" alt="MAHAMITHRA SR" class="profile-pic" onerror="this.style.display='none';">
+                <h1>MAHAMITHRA SR</h1>
+                <div class="subtitle">PMO & Operations Excellence Lead<br>Lean Six Sigma Black Belt</div>
                 
                 <div class="status-badge">
                     <span class="status-dot"></span>
@@ -470,66 +480,70 @@
             <div class="sidebar-footer">
                 <div class="contact-item">
                     <label>Location</label>
-                    <span>Bangalore, India [cite: 16]</span>
+                    <span>Bangalore, India</span>
                 </div>
                 <div class="contact-item">
                     <label>Network</label>
-                    <a href="https://linkedin.com/in/mahamithra" target="_blank">linkedin.com/in/mahamithra [cite: 5]</a>
+                    <a href="https://linkedin.com/in/mahamithra" target="_blank">linkedin.com/in/mahamithra</a>
                 </div>
                 <div class="contact-item">
                     <label>Communications</label>
-                    <a href="mailto:mahamithra007@gmail.com">mahamithra007@gmail.com [cite: 4]</a>
+                    <a href="mailto:mahamithra007@gmail.com">mahamithra007@gmail.com</a>
                 </div>
                 <div class="contact-item">
                     <label>Contact</label>
-                    <span>+91-8197422754 [cite: 3]</span>
+                    <span>+91-8197422754</span>
                 </div>
             </div>
         </aside>
 
         <main>
             <h2>Executive Summary</h2>
-            <p>Project Management and Operations professional with 8+ years of experience supporting end-to-end enterprise-scale implementation and transformation programs[cite: 7]. Proven track record of enabling effective Agile delivery, maintaining rigorous PMO governance, and navigating strict global compliance regulations[cite: 8]. Uniquely combines data-driven financial tracking and continuous improvement methodologies with extensive experience coordinating cross-functional, distributed onshore and offshore teams[cite: 9].</p>
+            <p>Project Management and Operations professional with 8+ years of experience supporting end-to-end enterprise-scale implementation and transformation programs. Proven track record of enabling effective Agile delivery, maintaining rigorous PMO governance, and navigating strict global compliance regulations. Uniquely combines data-driven financial tracking and continuous improvement methodologies with extensive experience coordinating cross-functional, distributed onshore and offshore teams.</p>
+
+            <div class="philosophy-block">
+                <p>"My approach to program management centers on absolute financial margin integrity, the systematic elimination of operational friction through custom workflow engineering, and building highly resilient compliance frameworks that scale predictably across borders."</p>
+            </div>
 
             <h2>Core Competencies</h2>
             
-            <h3>Program & Delivery Governance [cite: 11]</h3>
+            <h3>Program & Delivery Governance</h3>
             <div class="tags-container">
-                <span class="tag">PMO Governance [cite: 11]</span>
-                <span class="tag">Agile Methodologies (Scrum) [cite: 11]</span>
-                <span class="tag">End-to-End Project Lifecycle [cite: 11]</span>
-                <span class="tag">RAID Log Management [cite: 11]</span>
-                <span class="tag">Change Management [cite: 11]</span>
+                <span class="tag">PMO Governance</span>
+                <span class="tag">Agile Methodologies (Scrum)</span>
+                <span class="tag">End-to-End Project Lifecycle</span>
+                <span class="tag">RAID Log Management</span>
+                <span class="tag">Change Management</span>
             </div>
 
-            <h3>Operations & Support Infrastructure [cite: 12]</h3>
+            <h3>Operations & Support Infrastructure</h3>
             <div class="tags-container">
-                <span class="tag">Financial Tracking & Forecasting [cite: 12]</span>
-                <span class="tag">Technical Tooling Transformation [cite: 12]</span>
-                <span class="tag">Global Rollouts [cite: 12]</span>
-                <span class="tag">Stakeholder Management [cite: 12]</span>
-                <span class="tag">Lean Six Sigma Black Belt [cite: 2]</span>
+                <span class="tag">Financial Tracking & Forecasting</span>
+                <span class="tag">Technical Tooling Transformation</span>
+                <span class="tag">Global Rollouts</span>
+                <span class="tag">Stakeholder Management</span>
+                <span class="tag">Lean Six Sigma Black Belt</span>
             </div>
 
-            <h3>Technical Automations & Workspace Tools [cite: 13]</h3>
+            <h3>Technical Automations & Workspace Tools</h3>
             <div class="tags-container">
-                <span class="tag">Google Apps Script [cite: 13]</span>
-                <span class="tag">Microsoft Project [cite: 13]</span>
-                <span class="tag">Jira [cite: 13]</span>
-                <span class="tag">Confluence [cite: 13]</span>
-                <span class="tag">Monday.com [cite: 13]</span>
-                <span class="tag">Smartsheet [cite: 13]</span>
-                <span class="tag">Tableau [cite: 13]</span>
+                <span class="tag">Google Apps Script</span>
+                <span class="tag">Microsoft Project</span>
+                <span class="tag">Jira</span>
+                <span class="tag">Confluence</span>
+                <span class="tag">Monday.com</span>
+                <span class="tag">Smartsheet</span>
+                <span class="tag">Tableau</span>
             </div>
 
-            <h3>Global Language Proficiencies [cite: 14]</h3>
+            <h3>Global Language Proficiencies</h3>
             <div class="tags-container">
-                <span class="tag">English [cite: 14]</span>
-                <span class="tag">Tamil [cite: 14]</span>
-                <span class="tag">Hindi [cite: 14]</span>
-                <span class="tag">Kannada [cite: 14]</span>
-                <span class="tag">German (A2) [cite: 14]</span>
-                <span class="tag">French (A1) [cite: 14]</span>
+                <span class="tag">English</span>
+                <span class="tag">Tamil</span>
+                <span class="tag">Hindi</span>
+                <span class="tag">Kannada</span>
+                <span class="tag">German (A2)</span>
+                <span class="tag">French (A1)</span>
             </div>
 
             <h2>Impact & Key Initiatives</h2>
@@ -539,15 +553,15 @@
                 <div class="timeline-node">
                     <div class="timeline-card">
                         <h3>Project Manager, Operations Excellence</h3>
-                        <span class="timeline-meta">RingCentral // Apr 2024 - Present [cite: 16, 17]</span>
+                        <span class="timeline-meta">RingCentral // Apr 2024 - Present</span>
                         <ul>
-                            <li><strong>FAANG X-Y-Z Validation:</strong> Reduced cycle time for deal-desk approvals by 95% (from 48 hours to 2 hours) by engineering a robust, automated Margin Calculator using Google Apps Script to assist in financial tracking, forecasting, and reporting[cite: 18, 19].</li>
-                            <li><strong>System Frameworks:</strong> Architected unified workspace structures and governance frameworks across enterprise tools (Smartsheet, Monday.com, Jira) to optimize tracking and coordination for cross-functional, distributed onshore/offshore teams[cite: 20].</li>
-                            <li><strong>Governance Engine:</strong> Led the transition and adoption of the LAC 3.0 project governance tool, maintaining comprehensive RAID logs and applying Lean Six Sigma root cause analysis to eliminate formula errors[cite: 21].</li>
-                            <li><strong>System Stability:</strong> Directed User Acceptance Testing (UAT) and smoke testing for enterprise releases, ensuring adherence to delivery processes, standards, and seamless system stability[cite: 22].</li>
+                            <li>Reduced cycle time for deal-desk approvals by 95% (from 48 hours to 2 hours) by engineering a robust, smoothly running automated Margin Calculator using Google Apps Script to assist in financial tracking, forecasting, and reporting.</li>
+                            <li>Architected unified workspace structures and governance frameworks across enterprise tools (Smartsheet, Monday.com, Jira) to optimize tracking and coordination for cross-functional, distributed onshore/offshore teams.</li>
+                            <li>Led the transition and adoption of the LAC 3.0 project governance tool, maintaining comprehensive RAID logs and applying Lean Six Sigma root cause analysis to eliminate formula errors.</li>
+                            <li>Directed User Acceptance Testing (UAT) and smoke testing for enterprise releases, ensuring adherence to delivery processes, standards, and seamless system stability.</li>
                         </ul>
                         <div class="engineering-trade-offs">
-                            <strong>// Systems Architecture Constraint:</strong> Programmed internal script automations natively over sourcing out-of-the-box vendor software, completely bypassing multi-user licensing overhead and integrating directly with pre-existing legacy sheets.
+                            <strong>// Operational Governance Note:</strong> Engineered internal script automations natively over sourcing out-of-the-box vendor software, completely bypassing multi-user licensing overhead and integrating directly with pre-existing legacy sheets.
                         </div>
                     </div>
                 </div>
@@ -555,13 +569,13 @@
                 <div class="timeline-node">
                     <div class="timeline-card">
                         <h3>Global Program Lead (Operations & Compliance)</h3>
-                        <span class="timeline-meta">DKMS Foundation // Apr 2020 - Dec 2023 [cite: 23]</span>
+                        <span class="timeline-meta">DKMS Foundation // Apr 2020 - Dec 2023</span>
                         <ul>
-                            <li><strong>Global Execution:</strong> Managed end-to-end project delivery (initiate-plan-execute-close) for a global e-registration initiative across 7 countries, successfully transitioning donor onboarding to a unified digital platform[cite: 23].</li>
-                            <li><strong>Structural Refactoring:</strong> Partnered with legal counsel to navigate stringent FCRA restrictions and execute a corporate restructuring (for-profit/non-profit entities) to secure global funding channels[cite: 24].</li>
-                            <li><strong>Data Security loops:</strong> Implemented GDPR-compliant data governance and Standard Operating Procedures (SOPs) for the secure management of sensitive DNA and medical data[cite: 25].</li>
-                            <li><strong>Supply Chain Scaling:</strong> Optimized material flow and kit-distribution logistics across India by designing decentralized volunteer networks and "Student Ambassador" hub-and-spoke models[cite: 26].</li>
-                            <li><strong>Data Insights:</strong> Utilized Tableau to analyze laboratory data regarding buccal swab accuracy, tracking performance and translating insights into continuous improvement initiatives[cite: 27].</li>
+                            <li>Managed end-to-end project delivery (initiate-plan-execute-close) for a global e-registration initiative across 7 countries, successfully transitioning donor onboarding to a unified digital platform.</li>
+                            <li>Partnered with legal counsel to navigate stringent FCRA restrictions and execute a corporate restructuring (for-profit/non-profit entities) to secure global funding channels.</li>
+                            <li>Implemented GDPR-compliant data governance and Standard Operating Procedures (SOPs) for the secure management of sensitive DNA and medical data.</li>
+                            <li>Optimized material flow and kit-distribution logistics across India by designing decentralized volunteer networks and "Student Ambassador" hub-and-spoke models.</li>
+                            <li>Utilized Tableau to analyze laboratory data regarding buccal swab accuracy, tracking performance and translating insights into continuous improvement initiatives.</li>
                         </ul>
                     </div>
                 </div>
@@ -569,10 +583,10 @@
                 <div class="timeline-node">
                     <div class="timeline-card">
                         <h3>Associate (Process & Integration)</h3>
-                        <span class="timeline-meta">DKMS Foundation // Nov 2018 - Mar 2020 [cite: 28, 29]</span>
+                        <span class="timeline-meta">DKMS Foundation // Nov 2018 - Mar 2020</span>
                         <ul>
-                            <li><strong>Post-Merger Loop:</strong> Led post-merger operational integration between India and Germany, standardizing global manufacturing-style compliance workflows to improve audit readiness[cite: 30].</li>
-                            <li><strong>FAANG X-Y-Z Validation:</strong> Reduced systemic process tracking costs by 40% while increasing overall material traceability by overhauling core inventory management systems and implementing strict tracking protocols[cite: 31].</li>
+                            <li>Led post-merger operational integration between India and Germany, standardizing global manufacturing-style compliance workflows to improve audit readiness.</li>
+                            <li>Reduced systemic process tracking costs by 40% while increasing overall material traceability by overhauling core inventory management systems and implementing strict tracking protocols.</li>
                         </ul>
                     </div>
                 </div>
@@ -580,9 +594,9 @@
                 <div class="timeline-node">
                     <div class="timeline-card">
                         <h3>UN Peace Messenger & Program Specialist</h3>
-                        <span class="timeline-meta">Germany // Aug 2017 - Aug 2018 [cite: 32, 33]</span>
+                        <span class="timeline-meta">Germany // Aug 2017 - Aug 2018</span>
                         <ul>
-                            <li><strong>Global Strategy:</strong> Facilitated inclusive social initiatives and educational programs in Germany; served as a UN Peace Messenger advocating for global cooperation and sustainability in international workshops[cite: 34].</li>
+                            <li>Facilitated inclusive social initiatives and educational programs in Germany; served as a UN Peace Messenger advocating for global cooperation and sustainability in international workshops.</li>
                         </ul>
                     </div>
                 </div>
@@ -590,9 +604,9 @@
                 <div class="timeline-node">
                     <div class="timeline-card">
                         <h3>Program Executive (Operations)</h3>
-                        <span class="timeline-meta">SoStakes Services Pvt Ltd // Jan 2017 - Aug 2017 [cite: 35]</span>
+                        <span class="timeline-meta">SoStakes Services Pvt Ltd // Jan 2017 - Aug 2017</span>
                         <ul>
-                            <li><strong>Milestone Governance:</strong> Designed operational delivery models and audited timelines for large-scale CSR projects to ensure 100% milestone adherence for corporate sponsors[cite: 35].</li>
+                            <li>Designed operational delivery models and audited timelines for large-scale CSR projects to ensure 100% milestone adherence for corporate sponsors.</li>
                         </ul>
                     </div>
                 </div>
@@ -607,9 +621,9 @@
                         <h3>Shelved | Book-Tracking Application</h3>
                         <span class="timeline-meta">Personal Deployment // Mobile Platform Architecture</span>
                         <ul>
-                            <li><strong>The Concept:</strong> Developed a dedicated mobile application for personal library management and book tracking.</li>
-                            <li><strong>Technical Highlights:</strong> Engineered advanced capabilities, including a multi-tier ISBN lookup system and dynamic genre grouping logic.</li>
-                            <li><strong>Status:</strong> Successfully launched the platform to production, with the application recently welcoming its first active visitor.</li>
+                            <li>Developed a dedicated mobile application for personal library management and book tracking.</li>
+                            <li>Engineered advanced technical capabilities, including a multi-tier ISBN lookup system and dynamic genre grouping logic.</li>
+                            <li>Successfully launched the platform to production, with the core tracking system recently welcoming its first active visitor.</li>
                         </ul>
                     </div>
                 </div>
@@ -618,26 +632,26 @@
             <h2>Certifications</h2>
             <ul class="simple-list">
                 <li>
-                    <span>Lean Six Sigma Black Belt [cite: 37]</span>
+                    <span>Lean Six Sigma Black Belt</span>
                     <a href="lssbb-cert.pdf" target="_blank" class="cert-link">verify ↗</a>
                 </li>
                 <li>
-                    <span>Google Project Management Professional [cite: 38]</span>
+                    <span>Google Project Management Professional</span>
                 </li>
                 <li>
-                    <span>ESG & Climate Change [cite: 39]</span>
+                    <span>ESG & Climate Change</span>
                 </li>
             </ul>
 
-            <h2>Education [cite: 40]</h2>
+            <h2>Education</h2>
             <ul class="simple-list">
                 <li>
-                    <span><strong>Masters in Social Work (Medical & Psychiatry) [cite: 43]</strong><br><small style="color: var(--text-muted)">St Joseph's University [cite: 41]</small></span>
-                    <span style="font-family: monospace; font-size: 0.85em; color: var(--text-muted)">2014-2016 [cite: 43]</span>
+                    <span><strong>Masters in Social Work (Medical & Psychiatry)</strong><br><small style="color: var(--text-muted)">St Joseph's University</small></span>
+                    <span style="font-family: monospace; font-size: 0.85em; color: var(--text-muted)">2014-2016</span>
                 </li>
                 <li>
-                    <span><strong>Bachelor's Degree in Historical Studies [cite: 44]</strong><br><small style="color: var(--text-muted)">Madras University [cite: 42]</small></span>
-                    <span style="font-family: monospace; font-size: 0.85em; color: var(--text-muted)">2011-2014 [cite: 44]</span>
+                    <span><strong>Bachelor's Degree in Historical Studies</strong><br><small style="color: var(--text-muted)">Madras University</small></span>
+                    <span style="font-family: monospace; font-size: 0.85em; color: var(--text-muted)">2011-2014</span>
                 </li>
             </ul>
         </main>
