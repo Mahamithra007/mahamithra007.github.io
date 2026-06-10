@@ -276,7 +276,6 @@
             font-size: 0.95em;
         }
 
-        /* FIX: Removes the extra gap under the final 'Result' bullet */
         li:last-child {
             margin-bottom: 0;
         }
@@ -324,53 +323,24 @@
             color: var(--bg-color);
         }
 
-        /* Contact Details Layout */
-        .sidebar-footer {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            font-size: 0.85em;
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            color: var(--text-muted);
-        }
-
-        .contact-item label {
-            font-family: monospace;
-            font-size: 0.80em;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #4b5563;
-            margin-bottom: 2px;
-        }
-
-        .contact-item a, .contact-item span {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .contact-item a:hover {
-            color: var(--accent);
-        }
-
         /* Flawless Mobile / Tablet Adaptations */
         @media (max-width: 850px) {
             body { padding: 0; }
             .portfolio-wrapper { display: block; }
-            aside { position: relative; width: 100%; height: auto; padding: 40px 24px; border-right: none; border-bottom: 1px solid var(--border-color); }
-            main { padding: 40px 24px; }
+            
+            /* Squeezed the bottom padding above the border line */
+            aside { position: relative; width: 100%; height: auto; padding: 30px 24px 20px; border-right: none; border-bottom: 1px solid var(--border-color); }
+            
+            /* Squeezed the top padding below the border line */
+            main { padding: 24px 24px 40px; }
+            
             .btn { width: auto; display: inline-flex; padding: 10px 30px; }
             .profile-pic { margin-left: 0; }
-            .sidebar-footer { margin-top: 30px; gap: 16px; }
             
-            /* FIX: Shrinks the massive padding inside the challenge cards on mobile */
-            .challenge-block {
-                padding: 16px; 
-            }
+            /* Tightened the gap between the Download Button and Location */
+            .sidebar-footer { margin-top: 16px; gap: 12px; }
+            
+            .challenge-block { padding: 16px; }
         }
     </style>
 </head>
