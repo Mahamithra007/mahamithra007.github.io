@@ -27,7 +27,7 @@
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
             --accent: #60a5fa;
-            --accent-glow: rgba(96, 165, 250, 0.1);
+            --accent-glow: rgba(96, 165, 250, 0.15);
             --border-color: #1f2937;
             --card-hover: #111827;
         }
@@ -77,7 +77,7 @@
             align-items: flex-start;
         }
 
-        /* FAANG Fix: Image Aspect-Ratio Scaling Glitch Resolved */
+        /* Image Aspect-Ratio Scaling Glitch Resolved */
         .profile-pic {
             width: 110px;
             height: 110px;
@@ -91,10 +91,10 @@
             transform-origin: center center;
         }
 
-        /* Trigger scale state cleanly on profile block hover */
         .profile-section:hover .profile-pic {
             transform: scale(1.05);
             border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         h1 {
@@ -161,7 +161,8 @@
         .btn:hover {
             background-color: transparent;
             color: var(--text-main);
-            border-color: var(--border-color);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         /* Right Content Area */
@@ -206,13 +207,14 @@
             margin-top: 0;
         }
 
-        /* FAANG Fix: Semantic Blockquote over unsemantic div */
+        /* Semantic Blockquote */
         blockquote.philosophy-block {
             margin: 24px 0; 
             padding: 24px; 
-            border-left: 1px solid var(--accent); 
+            border-left: 2px solid var(--accent); 
             background: var(--sidebar-bg); 
             border-radius: 0 12px 12px 0;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
         }
 
         .philosophy-block p {
@@ -244,21 +246,40 @@
         .tag:hover {
             border-color: var(--accent);
             background-color: var(--bg-color);
+            box-shadow: 0 0 10px var(--accent-glow);
         }
 
-        /* Sleek Modular Challenge Cards Layout */
+        /* Sleek Modular Challenge Cards with Glassmorphism Hover */
         .challenge-block {
             border: 1px solid var(--border-color);
             background-color: var(--sidebar-bg);
             border-radius: 12px;
             padding: 24px;
             margin: 16px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Staggered animation delays for timeline cards */
+        .challenge-block:nth-child(1) { animation-delay: 0.1s; }
+        .challenge-block:nth-child(2) { animation-delay: 0.2s; }
+        .challenge-block:nth-child(3) { animation-delay: 0.3s; }
+        .challenge-block:nth-child(4) { animation-delay: 0.4s; }
+        .challenge-block:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .challenge-block:hover {
-            border-color: #374151;
+            border-color: rgba(96, 165, 250, 0.4);
             background-color: var(--card-hover);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
         }
 
         .challenge-block h3 {
@@ -353,7 +374,7 @@
             color: var(--bg-color);
         }
 
-        /* Contact Details Footer Layout */
+        /* Contact Details Footer Layout & Interactive Clipboard Toast */
         .sidebar-footer {
             display: flex;
             flex-direction: column;
@@ -365,6 +386,7 @@
             display: flex;
             flex-direction: column;
             color: var(--text-muted);
+            position: relative;
         }
 
         .contact-item label {
@@ -386,6 +408,34 @@
             color: var(--accent);
         }
 
+        .clickable-email {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        /* Toast notification feedback */
+        .copy-toast {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            background: var(--accent);
+            color: var(--bg-color);
+            font-size: 0.7em;
+            font-family: monospace;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(4px);
+            pointer-events: none;
+            transition: all 0.2s ease;
+        }
+
+        .copy-toast.show {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
         /* Mobile / Tablet Responsive Adjustments */
         @media (max-width: 850px) {
             body { padding: 0; }
@@ -398,7 +448,7 @@
             .challenge-block { padding: 16px; }
         }
 
-        /* FAANG Fix: Complete Print-To-PDF dossier layout safe guards */
+        /* Print-To-PDF dossier layout safe guards */
         @media print {
             * { background: transparent !important; color: #000000 !important; box-shadow: none !important; }
             body { display: block !important; background: #ffffff !important; color: #000000 !important; }
@@ -406,7 +456,7 @@
             aside { position: relative !important; width: 100% !important; height: auto !important; padding: 20px 0 !important; border: none !important; }
             main { padding: 20px 0 !important; width: 100% !important; }
             .btn, .status-badge, .cert-link { display: none !important; } 
-            .challenge-block { border: 1px solid #e5e7eb !important; page-break-inside: avoid; }
+            .challenge-block { border: 1px solid #e5e7eb !important; page-break-inside: avoid; opacity: 1 !important; transform: none !important; }
         }
     </style>
 </head>
@@ -417,8 +467,8 @@
         <aside>
             <div class="profile-section">
                 <img src="profile.jpg" alt="MAHAMITHRA SR" class="profile-pic" onerror="this.style.display='none';">
-                <h1>MAHAMITHRA SR</h1> <!--[cite: 8] -->
-                <div class="subtitle">PMO & Operations Excellence Lead<br>Lean Six Sigma Black Belt</div> <!--[cite: 8] -->
+                <h1>MAHAMITHRA SR</h1>
+                <div class="subtitle">PMO & Operations Excellence Lead<br>Lean Six Sigma Black Belt</div>
                 
                 <div class="status-badge">
                     <span class="status-dot"></span>
@@ -433,26 +483,29 @@
             <div class="sidebar-footer">
                 <div class="contact-item">
                     <label>Location</label>
-                    <span>Bangalore, India</span> <!--[cite: 8] -->
+                    <span>Bangalore, India</span>
                 </div>
                 <div class="contact-item">
                     <label>Network</label>
-                    <a href="https://linkedin.com/in/mahamithra" target="_blank" rel="noopener noreferrer">linkedin.com/in/mahamithra</a> <!--[cite: 8] -->
+                    <a href="https://linkedin.com/in/mahamithra" target="_blank" rel="noopener noreferrer">linkedin.com/in/mahamithra</a>
                 </div>
                 <div class="contact-item">
                     <label>Communications</label>
-                    <a href="mailto:mahamithra007@gmail.com">mahamithra007@gmail.com</a> <!--[cite: 8] -->
+                    <div class="clickable-email" onclick="copyEmailToClipboard(this)" title="Click to copy email">
+                        <span id="email-text">mahamithra007@gmail.com</span>
+                        <div class="copy-toast" id="copy-toast">Copied!</div>
+                    </div>
                 </div>
                 <div class="contact-item">
                     <label>Contact</label>
-                    <span>+91-8197422754</span> <!--[cite: 8] -->
+                    <span>+91-8197422754</span>
                 </div>
             </div>
         </aside>
 
         <main>
             <h2>Executive Summary</h2>
-            <p>Project Management and Operations professional with 9+ years of experience leveraging Lean Six Sigma Black Belt methodology and human-centered systems design to lead enterprise-scale transformation and Agile delivery programs. Proven track record of enabling effective Agile and iterative delivery, architecting executive portfolio dashboards, maintaining rigorous PMO governance, and navigating strict global compliance regulations. Uniquely combines data-driven financial tracking, Generative AI workflows, and continuous improvement methodologies with extensive experience coordinating cross-functional, distributed onshore and offshore teams.</p> <!--[cite: 8] -->
+            <p>Project Management and Operations professional with 9+ years of experience leveraging Lean Six Sigma Black Belt methodology and human-centered systems design to lead enterprise-scale transformation and Agile delivery programs. Proven track record of enabling effective Agile and iterative delivery, architecting executive portfolio dashboards, maintaining rigorous PMO governance, and navigating strict global compliance regulations. Uniquely combines data-driven financial tracking, Generative AI workflows, and continuous improvement methodologies with extensive experience coordinating cross-functional, distributed onshore and offshore teams.</p>
 
             <blockquote class="philosophy-block">
                 <p>My approach to program management centers on absolute financial margin integrity, the systematic elimination of operational friction through custom workflow engineering, and building highly resilient compliance frameworks that scale predictably across borders.</p>
@@ -460,65 +513,65 @@
 
             <h2>Core Competencies</h2>
             
-            <h3>Program & Delivery</h3> <!--[cite: 8] -->
+            <h3>Program & Delivery</h3>
             <div class="tags-container">
-                <span class="tag">PMO Governance</span> <!--[cite: 8] -->
-                <span class="tag">Agile Methodologies</span> <!--[cite: 8] -->
-                <span class="tag">Iterative Delivery</span> <!--[cite: 8] -->
-                <span class="tag">End-to-End Project Lifecycle</span> <!--[cite: 8] -->
-                <span class="tag">RAID Log Management</span> <!--[cite: 8] -->
-                <span class="tag">Change Management</span> <!--[cite: 8] -->
+                <span class="tag">PMO Governance</span>
+                <span class="tag">Agile Methodologies</span>
+                <span class="tag">Iterative Delivery</span>
+                <span class="tag">End-to-End Project Lifecycle</span>
+                <span class="tag">RAID Log Management</span>
+                <span class="tag">Change Management</span>
             </div>
 
-            <h3>Operations & Analytics</h3> <!--[cite: 8] -->
+            <h3>Operations & Analytics</h3>
             <div class="tags-container">
-                <span class="tag">Executive Dashboarding</span> <!--[cite: 8] -->
-                <span class="tag">KPI Reporting</span> <!--[cite: 8] -->
-                <span class="tag">Financial Tracking & Forecasting</span> <!--[cite: 8] -->
-                <span class="tag">Technical Tooling Transformation</span> <!--[cite: 8] -->
-                <span class="tag">Global Rollouts</span> <!--[cite: 8] -->
-                <span class="tag">Stakeholder Management</span> <!--[cite: 8] -->
-                <span class="tag">Lean Six Sigma Black Belt</span> <!--[cite: 8] -->
+                <span class="tag">Executive Dashboarding</span>
+                <span class="tag">KPI Reporting</span>
+                <span class="tag">Financial Tracking & Forecasting</span>
+                <span class="tag">Technical Tooling Transformation</span>
+                <span class="tag">Global Rollouts</span>
+                <span class="tag">Stakeholder Management</span>
+                <span class="tag">Lean Six Sigma Black Belt</span>
             </div>
 
-            <h3>Technical Tools</h3> <!--[cite: 8] -->
+            <h3>Technical Tools</h3>
             <div class="tags-container">
-                <span class="tag">Monday.com (Admin & Dashboards)</span> <!--[cite: 8] -->
-                <span class="tag">Jira</span> <!--[cite: 8] -->
-                <span class="tag">Smartsheet</span> <!--[cite: 8] -->
-                <span class="tag">Microsoft Project</span> <!--[cite: 8] -->
-                <span class="tag">Confluence</span> <!--[cite: 8] -->
-                <span class="tag">Google Apps Script</span> <!--[cite: 8] -->
-                <span class="tag">Tableau</span> <!--[cite: 8] -->
-                <span class="tag">Generative AI</span> <!--[cite: 8] -->
+                <span class="tag">Monday.com (Admin & Dashboards)</span>
+                <span class="tag">Jira</span>
+                <span class="tag">Smartsheet</span>
+                <span class="tag">Microsoft Project</span>
+                <span class="tag">Confluence</span>
+                <span class="tag">Google Apps Script</span>
+                <span class="tag">Tableau</span>
+                <span class="tag">Generative AI</span>
             </div>
 
-            <h3>Languages</h3> <!--[cite: 8] -->
+            <h3>Languages</h3>
             <div class="tags-container">
-                <span class="tag">English</span> <!--[cite: 8] -->
-                <span class="tag">Tamil</span> <!--[cite: 8] -->
-                <span class="tag">Hindi</span> <!--[cite: 8] -->
-                <span class="tag">Kannada</span> <!--[cite: 8] -->
-                <span class="tag">German (A2)</span> <!--[cite: 8] -->
-                <span class="tag">French (A1)</span> <!--[cite: 8] -->
+                <span class="tag">English</span>
+                <span class="tag">Tamil</span>
+                <span class="tag">Hindi</span>
+                <span class="tag">Kannada</span>
+                <span class="tag">German (A2)</span>
+                <span class="tag">French (A1)</span>
             </div>
 
             <h2>Impact & Key Initiatives</h2>
 
             <div class="challenge-block">
-                <h3>Project Manager, Operations Excellence</h3> <!--[cite: 8] -->
-                <span class="challenge-meta">RingCentral | Bangalore, India // Apr 2024 - Present</span> <!--[cite: 8] -->
+                <h3>Project Manager, Operations Excellence</h3>
+                <span class="challenge-meta">RingCentral | Bangalore, India // Apr 2024 - Present</span>
                 
                 <p style="color: var(--text-main); font-weight: 500; margin-top: 0; margin-bottom: 12px; font-size: 0.95em;">
-                    → Engineered custom AI-assisted script automation structures and executive portfolio dashboards that reduced deal-desk approval cycle times by 95% and provided real-time visibility into portfolio health. <!--[cite: 8] -->
+                    → Engineered custom AI-assisted script automation structures and executive portfolio dashboards that reduced deal-desk approval cycle times by 95% and provided real-time visibility into portfolio health.
                 </p>
 
                 <ul>
-                    <li><strong>Custom Tooling Automation:</strong> Leveraged Generative AI and Google Apps Script to engineer a dynamic, front-end UI for the RingCentral PS Quote & Margin Calculator; automated complex financial tracking and reduced deal-desk approval cycle times by 95% (from 48 hours to 2 hours).</li> <!--[cite: 8] -->
-                    <li><strong>Executive Dashboarding & Administration:</strong> Spearheaded the operational transition and platform administration of the Monday.com ecosystem; designed, built, and maintained dynamic executive dashboards to provide real-time visibility into portfolio health, resource capacity, and operational KPIs.</li> <!--[cite: 8] -->
-                    <li><strong>Cross-Platform Workflows:</strong> Architected unified workspace structures and automated cross-platform workflows across Monday.com, Smartsheet, and Jira, streamlining delivery tracking and operational support for distributed global teams.</li> <!--[cite: 8] -->
-                    <li><strong>Governance Protocol:</strong> Led the transition and adoption of the LAC 3.0 project governance tool, maintaining comprehensive RAID logs and applying Lean Six Sigma root cause analysis to eliminate formula errors.</li> <!--[cite: 8] -->
-                    <li><strong>Release Stability:</strong> Directed User Acceptance Testing (UAT) and smoke testing for enterprise releases, ensuring adherence to delivery processes, standards, and seamless system stability.</li> <!--[cite: 8] -->
+                    <li><strong>Custom Tooling Automation:</strong> Leveraged Generative AI and Google Apps Script to engineer a dynamic, front-end UI for the RingCentral PS Quote & Margin Calculator; automated complex financial tracking and reduced deal-desk approval cycle times by 95% (from 48 hours to 2 hours).</li>
+                    <li><strong>Executive Dashboarding & Administration:</strong> Spearheaded the operational transition and platform administration of the Monday.com ecosystem; designed, built, and maintained dynamic executive dashboards to provide real-time visibility into portfolio health, resource capacity, and operational KPIs.</li>
+                    <li><strong>Cross-Platform Workflows:</strong> Architected unified workspace structures and automated cross-platform workflows across Monday.com, Smartsheet, and Jira, streamlining delivery tracking and operational support for distributed global teams.</li>
+                    <li><strong>Governance Protocol:</strong> Led the transition and adoption of the LAC 3.0 project governance tool, maintaining comprehensive RAID logs and applying Lean Six Sigma root cause analysis to eliminate formula errors.</li>
+                    <li><strong>Release Stability:</strong> Directed User Acceptance Testing (UAT) and smoke testing for enterprise releases, ensuring adherence to delivery processes, standards, and seamless system stability.</li>
                 </ul>
                 <div class="engineering-trade-offs">
                     <strong>// Operational Governance Note:</strong> Chose to engineer internal script automations natively over sourcing out-of-the-box vendor software, entirely bypassing heavy multi-user licensing overhead and integrating directly with pre-existing legacy architecture.
@@ -526,49 +579,49 @@
             </div>
 
             <div class="challenge-block">
-                <h3>Global Program Lead (Operations & Compliance)</h3> <!--[cite: 8] -->
-                <span class="challenge-meta">DKMS Foundation // Apr 2020 - Dec 2023</span> <!--[cite: 8] -->
+                <h3>Global Program Lead (Operations & Compliance)</h3>
+                <span class="challenge-meta">DKMS Foundation // Apr 2020 - Dec 2023</span>
 
                 <p style="color: var(--text-main); font-weight: 500; margin-top: 0; margin-bottom: 12px; font-size: 0.95em;">
-                    → Orchestrated global digital transformation across 7 countries and improved regional logistics turnaround by 35%, scaling digital accessibility and compliance. <!--[cite: 8] -->
+                    → Orchestrated global digital transformation across 7 countries and improved regional logistics turnaround by 35%, scaling digital accessibility and compliance.
                 </p>
 
                 <ul>
-                    <li><strong>Global Execution:</strong> Managed end-to-end project delivery (initiate-plan-execute-close) for a global e-registration initiative across 7 countries, successfully transitioning donor onboarding to a unified digital platform.</li> <!--[cite: 8] -->
-                    <li><strong>Structural Refactoring:</strong> Partnered with legal counsel to navigate stringent FCRA restrictions and execute a corporate restructuring (for-profit/non-profit entities) to secure global funding channels.</li> <!--[cite: 8] -->
-                    <li><strong>Data Security Frameworks:</strong> Implemented GDPR-compliant data governance and Standard Operating Procedures (SOPs) for the secure management of sensitive DNA and medical data.</li> <!--[cite: 8] -->
-                    <li><strong>Supply Chain Scaling:</strong> Optimized material flow and kit-distribution logistics nationwide by establishing decentralized hub-and-spoke volunteer networks, improving delivery turnaround by 35% across regional hubs.</li> <!--[cite: 8] -->
-                    <li><strong>Data Insights:</strong> Utilized Tableau to analyze laboratory data regarding buccal swab accuracy, tracking performance and translating insights into continuous improvement initiatives.</li> <!--[cite: 8] -->
+                    <li><strong>Global Execution:</strong> Managed end-to-end project delivery (initiate-plan-execute-close) for a global e-registration initiative across 7 countries, successfully transitioning manual donor onboarding to a unified digital platform.</li>
+                    <li><strong>Structural Refactoring:</strong> Partnered directly with legal counsel to navigate stringent FCRA restrictions and execute a corporate restructuring (for-profit/non-profit entities) to secure global funding channels.</li>
+                    <li><strong>Data Security Frameworks:</strong> Implemented GDPR-compliant data governance and Standard Operating Procedures (SOPs) for the secure management of sensitive DNA and medical data.</li>
+                    <li><strong>Supply Chain Scaling:</strong> Optimized material flow and kit-distribution logistics nationwide by establishing decentralized hub-and-spoke volunteer networks, improving delivery turnaround by 35% across regional hubs.</li>
+                    <li><strong>Data Insights:</strong> Utilized Tableau to analyze laboratory data regarding buccal swab accuracy, tracking performance and translating insights into continuous improvement initiatives.</li>
                 </ul>
             </div>
 
             <div class="challenge-block">
-                <h3>Associate (Process & Integration)</h3> <!--[cite: 8] -->
-                <span class="challenge-meta">DKMS Foundation // Nov 2018 - Mar 2020</span> <!--[cite: 8] -->
+                <h3>Associate (Process & Integration)</h3>
+                <span class="challenge-meta">DKMS Foundation // Nov 2018 - Mar 2020</span>
 
                 <p style="color: var(--text-main); font-weight: 500; margin-top: 0; margin-bottom: 12px; font-size: 0.95em;">
-                    → Directed post-merger integration operations between India and Germany, effectively reducing systemic process costs by 40%. <!--[cite: 8, 9] -->
+                    → Directed post-merger integration operations between India and Germany, effectively reducing systemic process costs by 40%.
                 </p>
 
                 <ul>
-                    <li><strong>Post-Merger Integration:</strong> Led post-merger operational integration between India and Germany, standardizing global manufacturing-style compliance workflows to improve audit readiness.</li> <!--[cite: 8] -->
-                    <li><strong>Inventory Optimization:</strong> Overhauled inventory management systems, implementing tracking protocols that reduced process costs by 40% while increasing material traceability.</li> <!--[cite: 9] -->
+                    <li><strong>Post-Merger Integration:</strong> Led post-merger operational integration between India and Germany, standardizing global manufacturing-style compliance workflows to improve audit readiness.</li>
+                    <li><strong>Inventory Optimization:</strong> Overhauled inventory management systems, implementing tracking protocols that reduced process costs by 40% while increasing material traceability.</li>
                 </ul>
             </div>
 
             <div class="challenge-block">
-                <h3>UN Peace Messenger (1-Year Global Fellowship)</h3> <!--[cite: 9] -->
-                <span class="challenge-meta">Germany // Aug 2017 - Aug 2018</span> <!--[cite: 9] -->
+                <h3>UN Peace Messenger (1-Year Global Fellowship)</h3>
+                <span class="challenge-meta">Germany // Aug 2017 - Aug 2018</span>
                 <ul>
-                    <li><strong>Global Strategy:</strong> Directed cross-cultural educational programs and international stakeholder workshops across Germany, managing program governance and delivery milestones for global initiatives.</li> <!--[cite: 9] -->
+                    <li><strong>Global Strategy:</strong> Directed cross-cultural educational programs and international stakeholder workshops across Germany, managing program governance and delivery milestones for global initiatives.</li>
                 </ul>
             </div>
 
             <div class="challenge-block">
-                <h3>Program Executive (Operations)</h3> <!--[cite: 9] -->
-                <span class="challenge-meta">SoStakes Services Pvt Ltd | Bangalore // Jan 2017 - Aug 2017</span> <!--[cite: 9] -->
+                <h3>Program Executive (Operations)</h3>
+                <span class="challenge-meta">SoStakes Services Pvt Ltd | Bangalore // Jan 2017 - Aug 2017</span>
                 <ul>
-                    <li><strong>Milestone Governance:</strong> Designed operational delivery models and audited timelines for large-scale CSR projects to ensure 100% milestone adherence for corporate sponsors.</li> <!--[cite: 9] -->
+                    <li><strong>Milestone Governance:</strong> Designed operational delivery models and audited timelines for large-scale CSR projects to ensure 100% milestone adherence for corporate sponsors.</li>
                 </ul>
             </div>
 
@@ -584,34 +637,59 @@
                 </ul>
             </div>
 
-            <h2>Certifications</h2> <!--[cite: 9] -->
+            <h2>Certifications</h2>
             <ul class="simple-list">
                 <li>
-                    <span>Lean Six Sigma Black Belt</span> <!--[cite: 9] -->
+                    <span>Lean Six Sigma Black Belt</span>
                     <a href="lssbb-cert.pdf" target="_blank" rel="noopener noreferrer" class="cert-link">verify ↗</a>
                 </li>
                 <li>
-                    <span>Google Project Management Professional</span> <!--[cite: 9] -->
+                    <span>Google Project Management Professional</span>
                 </li>
                 <li>
-                    <span>ESG & Climate Change</span> <!--[cite: 9] -->
+                    <span>ESG & Climate Change</span>
                 </li>
             </ul>
 
-            <h2>Education</h2> <!--[cite: 9] -->
+            <h2>Education</h2>
             <ul class="simple-list">
                 <li>
-                    <span><strong>Masters in Social Work (Medical & Psychiatry)</strong><br><small style="color: var(--text-muted)">St Joseph's University</small></span> <!--[cite: 9] -->
-                    <span style="font-family: monospace; font-size: 0.85em; color: var(--text-muted)">2014-2016</span> <!--[cite: 9] -->
+                    <span><strong>Masters in Social Work (Medical & Psychiatry)</strong><br><small style="color: var(--text-muted)">St Joseph's University</small></span>
+                    <span style="font-family: monospace; font-size: 0.85em; color: var(--text-muted)">2014-2016</span>
                 </li>
                 <li>
-                    <span><strong>Bachelor's Degree in Historical Studies</strong><br><small style="color: var(--text-muted)">Madras University</small></span> <!--[cite: 9] -->
-                    <span style="font-family: monospace; font-size: 0.85em; color: var(--text-muted)">2011-2014</span> <!--[cite: 9] -->
+                    <span><strong>Bachelor's Degree in Historical Studies</strong><br><small style="color: var(--text-muted)">Madras University</small></span>
+                    <span style="font-family: monospace; font-size: 0.85em; color: var(--text-muted)">2011-2014</span>
                 </li>
             </ul>
         </main>
 
     </div>
 
+    <!-- Interactive Micro-Interaction Script -->
+    <script>
+        function copyEmailToClipboard(element) {
+            const emailText = document.getElementById('email-text').innerText;
+            const toast = document.getElementById('copy-toast');
+            
+            navigator.clipboard.writeText(emailText).then(() => {
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        // Dynamic Tab Focus Indicator Polish
+        const originalTitle = document.title;
+        window.addEventListener('blur', () => {
+            document.title = "Come back! 👋 — Mahamithra SR";
+        });
+        window.addEventListener('focus', () => {
+            document.title = originalTitle;
+        });
+    </script>
 </body>
 </html>
